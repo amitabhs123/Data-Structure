@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdlib>
 using namespace std;
 void CreateNode();
 void DisplayElement();
@@ -8,6 +9,12 @@ void InsertAtSpecificPos();
 void DeleteAtBe();
 void DeleteAtEnd();
 void DeleteAtspec();
+struct node{
+	int data;
+	struct node *next;
+};
+
+struct node *head=NULL, *temp, *newnode, *prevnode;
 int main(){
 	int choice;
  do{
@@ -38,15 +45,11 @@ int main(){
 		case 7 : DeleteAtEnd();
 				 break;
 		case 8 : DeleteAtspec();
-				 break;		*/
+				 break;		
 	}
 } while(choice!=0);
 }
-struct node{
-	int data;
-	struct node *next;
-};
-struct node *head=NULL, *temp, *newnode, *prevnode;
+
 
 
 
@@ -65,7 +68,7 @@ void CreateNode()
 				}
 			else
 				{
-					newnode->next = newnode;
+					temp->next = newnode;
 					temp = newnode;
 				}
 
@@ -77,9 +80,10 @@ void CreateNode()
 void DisplayElement()
 {
 	temp=head;
-		cout<<"Node Elements"<<endl;
-	while(temp!=NULL)
+		cout<<"Node Elements\t";
+	while(temp->next!=NULL)
 		{
+			cout<<"while";
 			cout<<temp->data<<" "<<endl;
 			temp=temp->next;
 		}	
@@ -120,9 +124,8 @@ void InsertAtEnd()
 		}
 		temp->next=newnode;
 	}
-	
-void InsertAtSpecificPos()
-{
+}
+void InsertAtSpecificPos(){
 	newnode= new node();
 	cout<<"Enter the data for newnode"<<endl;
 	cin>>newnode->data;
@@ -191,20 +194,12 @@ void DeleteAtspec()
 		cin>>w;
 		while(temp->data!=w)
 		{
-			prevnode->next=temp
+			prevnode->next=temp;
 			temp=temp->next;
 		}
-		prevnode->next=temp->next
+		prevnode->next=temp->next;
 		free(temp);
 		cout<<"Node is deleted"<<endl<<endl;
 	}
 }
-
 	
-	
-	
-	
-	
-	
-	
-}

@@ -94,16 +94,10 @@ void InsertAtBegining()
 {
 	//newnode = (struct node*)malloc(sizeof(struct node));
 	newnode= new node();
-	cin>>newnode->data;
-	 temp=newnode;
-	if(temp->next==NULL)
-	{
-		head=temp=newnode;
-	}
-	else
-	{
-		head=newnode;
-	}
+	cout<<"Enter data "<<endl;
+	cin>>newnode->data;	
+	newnode->next=head;
+	head=newnode;
 }
 
 void InsertAtEnd()

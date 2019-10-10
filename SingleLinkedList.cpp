@@ -152,7 +152,7 @@ void DeleteAtBe()
 	else
 	{
 		temp=head;
-		head=temp->next;
+		head=head->next;
 		free(temp);
 	}
 	

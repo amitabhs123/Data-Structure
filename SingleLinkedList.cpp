@@ -8,7 +8,7 @@ void InsertAtEnd();
 void InsertAtSpecificPos();
 void DeleteAtBe();
 void DeleteAtEnd();
-void DeleteAtspec();
+void DeleteAtSpec();
 struct node{
 	int data;
 	struct node *next;
@@ -25,7 +25,7 @@ int main(){
 	cout<<"4 Insert Node At End"<<endl;
 	cout<<"5 Insert Node at after specific Element"<<endl;
 	cout<<"6 DELETE Node at Beginnig"<<endl;
-	cout<<"7 DELETE Node at Beginnig"<<endl;
+	cout<<"7 DELETE Node at End"<<endl;
 	cout<<"8 DELETE Specific Node "<<endl;
 	cout<<"0 Exit"<<endl;
 	cin>>choice;
@@ -44,7 +44,7 @@ int main(){
 				 break;
 		case 7 : DeleteAtEnd();
 				 break;
-		case 8 : DeleteAtspec();
+		case 8 : DeleteAtSpec();
 				 break;		
 	}
 } while(choice!=0);
@@ -81,9 +81,9 @@ void DisplayElement()
 {
 	temp=head;
 		cout<<"Node Elements\t";
-	while(temp->next!=NULL)
+	while(temp!=NULL)
 		{
-			cout<<"while";
+			cout<<endl;
 			cout<<temp->data<<" "<<endl;
 			temp=temp->next;
 		}	
@@ -92,12 +92,12 @@ void DisplayElement()
 
 void InsertAtBegining()
 {
-	//newnode = (struct node*)malloc(sizeof(struct node));
-	newnode= new node();
-	cout<<"Enter data "<<endl;
-	cin>>newnode->data;	
-	newnode->next=head;
-	head=newnode;
+		newnode = new node();
+		cout<<"Enter data "<<endl;
+		cin>>newnode->data;
+		
+		newnode->next=head;
+		head=newnode;	
 }
 
 void InsertAtEnd()
@@ -108,6 +108,7 @@ void InsertAtEnd()
 	if(head==NULL)
 	{
 		head=temp=newnode;
+		//cout<<"there is no node present"<<endl;
 	}
 	else
 	{
@@ -125,7 +126,7 @@ void InsertAtSpecificPos(){
 	cin>>newnode->data;
 	cout<<"Enter the node data between u want to insert a node"<<endl;
 	int x,y;
-	cin>>x,y;
+	cin>>y;
 	temp=head;
 	
 	while(temp->data!=y)
@@ -139,13 +140,13 @@ void InsertAtSpecificPos(){
 
 void DeleteAtBe()
 {
-	if(head==temp)
+	if(head==NULL)
 	{
 		cout<<"There is no node"<<endl;
 	}
 	else
 	{
-		temp=head;
+		temp=head;		
 		head=head->next;
 		free(temp);
 	}
@@ -167,33 +168,45 @@ void DeleteAtEnd()
 			prevnode=temp;
 			temp=temp->next;
 		}
-		prevnode->next=temp;
-		free(temp);
+			if(temp==head)
+			{
+				head=NULL;
+			}
+			else
+			{
+		 		prevnode->next=NULL;
+		 	}
+		 	free(temp);
+			cout<<"End NODE DELETED"<<endl<<endl<<endl;
 	}
 	
 }
 
-void DeleteAtspec()
+void DeleteAtSpec()
 {
+	int data;
+	cout<<"Enter data to want delete";
+	cin>>data;
 	
-	if(temp=NULL)
+	if(head==NULL)
 	{
-		cout<<"There is no node found"<<endl;
+		cout<<"list is empty"<<endl;	
 	}
 	else
 	{
 		temp=head;
-		int w;
-		cout<<"Enter the data which u want to delete"<<endl;
-		cin>>w;
-		while(temp->data!=w)
+		while(temp->data!=data)
 		{
-			prevnode->next=temp;
+			prevnode=temp;
 			temp=temp->next;
 		}
 		prevnode->next=temp->next;
-		free(temp);
-		cout<<"Node is deleted"<<endl<<endl;
-	}
+		free(temp);	
+		
+		cout<<"NODE DELETED"<<endl<<endl<<endl;
+	}	
+	
 }
+
+
 	
